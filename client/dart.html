@@ -1,0 +1,99 @@
+<head>
+  <title>Score</title>
+  
+  <meta name="viewport" content="minimal-ui">
+  
+</head>
+
+<body>
+	{{>navigation}}
+</body>
+
+
+
+<template name= "layout">
+	<div class="container-fluid">
+    <div class="row-fluid">
+       <div class="span8">
+          {{>yield}}
+       </div>
+    </div>
+	</div>
+</template>
+
+
+
+
+<template name= "players">
+    
+  <ul id="playerList" class="unstyled">
+    {{#if playerList.count}}
+        {{#each playerList}}
+            {{>player}}
+        {{/each}}
+
+        <div class="col-lg-10">
+          <label class="control-label" for="inputName">Poeng</label>
+          <input type="number" class="form-control" id="inputScore">
+          <br>
+          <button type="button" class="btn btn-default" id="inputScoreButton">Gi poeng!</button>
+          <button type="button" class="btn btn-default" id="resetButton">Reset!</button>
+        </div>
+    {{else}}
+        <h1>Killer!</h1>
+        <h4>Spillet går kort fortalt ut på å kaste mer enn det spilleren før deg har gjort.<br>
+            Hvis du ikke klarer det, mister du en strek, og når du har mistet 5 streker er du ute.<br>
+            Vinneren er den som står igjen til slutt når alle andre er ute.<br>
+            Den spilleren som starter må kaste over 41 poeng. </h4>
+     {{/if}}
+
+    
+  </ul><br>
+
+  
+
+
+</template>
+
+
+<template name= "player">
+  <div class="player {{selected}}">
+    <div class="panel-body">
+            <td class="title"><h4>{{name}} må ha {{min}} poeng. Streker: {{lines}}. {{winner}}</h4></td>
+    </div>
+  </div>
+</template>
+
+<template name= "add_player">
+    <h4>Legg til nye spillere!</h4><br>
+    <div class="form-group"> 
+        <label class="control-label" for="inputName">Navn</label>
+        <input type="text" class="form-control" id="inputName">
+        <button type="button" class="btn btn-default" id="addNameButton">Legg til</button>
+        <button type="button" class="btn btn-default" id="resetButton">Reset!</button>
+    </div>
+</template>
+
+
+<template name= "result">
+    
+  <ul id="resultList" class="unstyled">
+    {{#if resultList.count}}
+     <h1>Resultat!</h1>
+        {{#each resultList}}
+            {{>res}}
+        {{/each}}
+
+    {{else}}
+        <h4>Du må spille før du kan se resultat..</h4>
+     {{/if}}
+  </ul><br>
+</template>
+
+<template name= "res">
+  <div class="res {{selected}}">
+    <div class="panel-body">
+            <td class="title"><h4>{{position}} - {{name}}</h4></td>
+    </div>
+  </div>
+</template>
